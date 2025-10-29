@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>hmmm 😎</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #0a0a0a, #000);
+    font-family: 'Cinzel', serif;
+    overflow: hidden;
+    color: #f8c4e1;
+  }
+
+  /* Envelope */
+  .envelope {
+    width: 180px;
+    height: 120px;
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(255, 105, 180, 0.5);
+    transition: transform 0.5s, opacity 1s;
+    border: 2px solid #ff69b4;
+  }
+
+  .envelope::before, .envelope::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0; top: 0;
+    background: linear-gradient(145deg, #2a2a2a, #000);
+    clip-path: polygon(0 0, 50% 50%, 100% 0);
+  }
+
+  .envelope::after {
+    transform: rotateX(180deg);
+    top: auto;
+    bottom: 0;
+    clip-path: polygon(0 100%, 50% 50%, 100% 100%);
+  }
+
+  .envelope.open {
+    opacity: 0;
+    transform: scale(1.1) rotateX(90deg);
+    transition: all 1s ease;
+  }
+
+  /* Confetti */
+  .confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: pink;
+    top: -10px;
+    border-radius: 50%;
+    animation: fall 3s linear forwards;
+    z-index: 100;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(110vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  /* Message card */
+  .card {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    max-width: 650px;
+    background: #111;
+    border: 2px solid #ff69b4;
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(255, 105, 180, 0.3);
+    padding: 40px;
+    text-align: center;
+    animation: fadeIn 1s forwards;
+    background-image: radial-gradient(circle at top left, rgba(255,105,180,0.15), transparent 70%), 
+                      radial-gradient(circle at bottom right, rgba(255,105,180,0.1), transparent 70%);
+  }
+
+  .card.show {
+    display: flex;
+    animation: fadeIn 1.5s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  h1 {
+    font-size: 2.2em;
+    color: #ff9edb;
+    text-shadow: 0 0 15px #ff69b4;
+  }
+
+  p {
+    color: #f8c4e1;
+    line-height: 1.6;
+    margin-top: 15px;
+    font-size: 1.05em;
+    font-style: italic;
+  }
+
+  /* Magical Flame Orb */
+  .flame-area {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .orb-base {
+    width: 60px;
+    height: 15px;
+    background: radial-gradient(circle, #ff69b4, #300030);
+    border-radius: 50%;
+    box-shadow: 0 0 20px #ff9edb inset;
+    position: relative;
+    margin-top: 50px;
+  }
+
+  .orb {
+    position: absolute;
+    bottom: 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 30%, #ffe1f0 10%, #ff9edb 60%, rgba(255,105,180,0.3) 100%);
+    box-shadow: 0 0 30px 10px rgba(255, 182, 193, 0.5);
+    animation: float 2s ease-in-out infinite alternate, flicker 0.15s infinite alternate;
+  }
+
+  @keyframes float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+  }
+
+  @keyframes flicker {
+    from { opacity: 1; filter: brightness(1); }
+    to { opacity: 0.8; filter: brightness(1.3); }
+  }
+
+  button {
+    margin-top: 80px;
+    background: #1a1a1a;
+    border: 1px solid #ff69b4;
+    color: #ffb6c1;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Cinzel', serif;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background: #ff69b4;
+    color: #000;
+    box-shadow: 0 0 15px #ff69b4;
+  }
+</style>
+</head>
+<body>
+  <div class="envelope" id="envelope"></div>
+
+  <div class="card" id="card">
+    <h1>HAPPY BIRTHDAY!!</h1>
+    <p>
+      i be very simple this time, meow. just saying that, despite all your struggles and silent battles
+       — dangg, you made it this far and thats something to be proud of!! you're 17 now. just keep being freaky (lol), cool, and wonderfully weird 😼😼
+
+      <br><br>Frank Ocean once said <strong>"you ain't a kid no more, we'll never be those kids again."</strong>
+          <br>and that's alright, time keeps moving forward, people change, and so do we.
+              the kid you once were would probably smile seeing who you’ve become now — still you,
+              just braver and wiser. so keep walking your path, carrying every piece of who you were and who you’re meant to be. 
+      <br><h2>HAPPY 17th!</h2>
+    </p>
+
+    <div class="flame-area">
+      <div class="orb-base">
+        <div class="orb" id="orb"></div>
+      </div>
+      <button id="blowBtn">Blow Magical Flame 🔥</button>
+    </div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    const card = document.getElementById('card');
+    const orb = document.getElementById('orb');
+    const blowBtn = document.getElementById('blowBtn');
+
+    function createConfetti() {
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = 
+          ['#ff69b4', '#ffb6c1', '#f8c4e1'][Math.floor(Math.random() * 3)];
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3000);
+      }
+    }
+
+    envelope.addEventListener('click', () => {
+      envelope.classList.add('open');
+      createConfetti();
+      setTimeout(() => {
+        envelope.style.display = 'none';
+        card.classList.add('show');
+      }, 1000);
+    });
+
+    blowBtn.addEventListener('click', () => {
+      if (orb.style.display !== 'none') {
+        orb.style.animation = 'fadeOut 1s forwards';
+        orb.style.opacity = '0';
+        setTimeout(() => {
+          orb.style.display = 'none';
+          blowBtn.innerText = 'Relight Magical Flame ✨';
+        }, 1000);
+      } else {
+        orb.style.display = 'block';
+        orb.style.opacity = '1';
+        orb.style.animation = 'float 2s ease-in-out infinite alternate, flicker 0.15s infinite alternate';
+        blowBtn.innerText = 'Blow Magical Flame 🔥';
+      }
+    });
+
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes fadeOut {
+        from { opacity: 1; transform: scale(1); }
+        to { opacity: 0; transform: scale(0.8); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
